@@ -17,8 +17,8 @@ class Select
         console.log(this.ask);
         this.param.forEach((el, i) => {
             let char = ' ';
-            if (this.selected == i) char = '>';
-            this.io.write(`${char.red} ` + el.blue + '\n');
+            if (this.selected == i) char = '>'.red;
+            this.io.write(`${char} ` + el + '\n');
         });
     }
 
