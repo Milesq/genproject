@@ -20,7 +20,7 @@ let cnfTemplate = [
     // },
     // {
     //     description: 'W czym chcesz pisać testy jednostkowe?',
-    //     values: ['Karma+Jasmine', 'None'.white]
+    //     values: ['Karma+Jasmine'.red, 'None'.white]
     // },
     // {
     //     description: 'Czego będziesz używał do backendu?',
@@ -28,7 +28,7 @@ let cnfTemplate = [
     //         'PHP with symfony'.bgBlack.white,
     //         'PHP with my own Freamwork'.rainbow,
     //         'NodeJS'.bgGreen.black,
-    //         'NodeJS with ExpressJS',
+    //         'NodeJS with ExpressJS'.bgwhite.black,
     //         'None'.zebra
     //     ]
     // }

@@ -9,6 +9,7 @@ let getConfig = require('./getconfig');
 let io = readline.createInterface(process.stdin, process.stdout);
 
 getConfig(io).then(resp => {
-    io.close();
+    resp = resp.map(el => el.split('').reverse().splice(5).reverse().splice(5).join(''));
     console.log(resp);
+    io.close();
 });
