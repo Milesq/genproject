@@ -17,7 +17,7 @@ class Select
         console.log(this.ask);
         this.param.forEach((el, i) => {
             let char = ' ';
-            if (this.selected == i) char = '>'.red;
+            if (this.selected == i) char = '>'[this.selectorColor];
             this.io.write(`${char} ` + el + '\n');
         });
     }
@@ -28,7 +28,7 @@ class Select
         if(key.name == 'return') this.resolve(this.param[this.selected]);
     }
 
-    constructor (_ask, _param, _io) {
+    constructor (_ask, _param, _io, firstSelected=0, _selectorColor='red') {
         if(typeof(_param) != typeof([]) || _param.length <= 1) {
             throw 'Incorrect value for param!';
         }
@@ -38,7 +38,8 @@ class Select
         this.ask = _ask;
         this.param = _param;
         this.io = _io;
-        this.selected = 0;
+        this.selected = firstSelected;
+        this.selectorColor = _selectorColor;
 
         this.displayOption();
         return new Promise(function (_resolve) {
