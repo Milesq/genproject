@@ -7,4 +7,4 @@ let readline = require('readline');
 let getConfig = require('./getconfig');
 
 let io = readline.createInterface(process.stdin, process.stdout);
-getConfig();
+getConfig(io);
