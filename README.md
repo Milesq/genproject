@@ -1,4 +1,8 @@
-# Supported technology
+# genProject
+
+## Node JS CLI application, used to generate generic project templates
+
+### Supported technology
 
 - Frontend
 
