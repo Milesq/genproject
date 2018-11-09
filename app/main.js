@@ -1,10 +1,10 @@
-let sys = require('node-cmd');
-let rd = require('readline-sync').question;
-let ut = require('./utility.js');
-const colors = require('colors');
-let log = ut.log;
+const VER = '0.0.1';
 
-log(`Project generator ${ut.ver}
-Front-end language`.blue);
-rd('What will you use?\n');
-log('JS\nTS');
+//let sys = require('node-cmd');
+let colors = require('colors');
+let readline = require('readline');
+
+let getConfig = require('./getconfig');
+
+let io = readline.createInterface(process.stdin, process.stdout);
+getConfig();
