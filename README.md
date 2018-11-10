@@ -31,3 +31,4 @@
 - Other
 
   - GIT (*default*)
+  - Doxygen

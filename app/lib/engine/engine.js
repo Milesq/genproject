@@ -1,5 +1,7 @@
 function main(path) {
-
+    console.log(path);
 }
 
-module.exports = main;
+module.exports = {
+    createProject: main
+};

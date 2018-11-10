@@ -1,18 +1,22 @@
+let beautify = require('json-beautify');
+
 class ConfigFile {
     constructor(_name = "./genProject.conf.json") {
         this.name = _name;
-        this.content = '';
+        this.content = {};
     }
 
     load(tab) {
-        this.content = `{
-               "frontLanguage": "${tab[0]}",
-               "frontFreamwork": "${tab[1]}",
-               "cssPreCompiler": "${tab[2]}",
-               "toolBuilder": "${tab[3]}",
-               "unitTests": "${tab[4]}",
-               "backend": "${tab[5]}"
-           }`;
+        this.content.config = {
+            frontLanguage: tab[0],
+            frontFreamwork: tab[1],
+            cssPreCompiler: tab[2],
+            toolBuilder: tab[3],
+            unitTests: tab[4],
+            backend: tab[5],
+            doxygen: tab[6]
+        };
+        this.content = beautify(this.content, null, 2);
     }
 
     save() {
