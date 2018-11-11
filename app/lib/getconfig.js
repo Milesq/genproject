@@ -19,10 +19,6 @@ let cnfTemplate = [
         values: ['Sass'.red, 'Sass(Scss syntax)'.red, 'None'.white]
     },
     {
-        description: 'Wybierz tool builder',
-        values: ['Gulp'.red, 'None'.white]
-    },
-    {
         description: 'W czym chcesz pisać testy jednostkowe?',
         values: ['Karma+Jasmine'.red, 'None'.white]
     },

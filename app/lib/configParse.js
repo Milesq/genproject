@@ -12,10 +12,9 @@ class ConfigFile {
             frontFreamwork: tab[1],
             htmlPreProcesor: tab[2],
             cssPreCompiler: tab[3],
-            toolBuilder: tab[4],
-            unitTests: tab[5],
-            backend: tab[6],
-            doxygen: tab[7]
+            unitTests: tab[4],
+            backend: tab[5],
+            doxygen: tab[6]
         };
         this.content = beautify(this.content, null, 2);
     }
