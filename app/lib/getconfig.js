@@ -11,6 +11,10 @@ let cnfTemplate = [
         values: ['Vue'.green, 'None'.white]
     },
     {
+        description: 'Wybierz typ dokumentu strony',
+        values: ['HTML'.red, 'Jade'.white]
+    },
+    {
         description: 'Wybierz kompilator CSS\'a',
         values: ['Sass'.red, 'Sass(Scss syntax)'.red, 'None'.white]
     },
@@ -26,7 +30,7 @@ let cnfTemplate = [
         description: 'Czego będziesz używał do backendu?',
         values: ['PHP'.magenta,
             'PHP with symfony'.black,
-            'PHP with my own Freamwork'.yellow,
+            'PHP with my own Freamwork'.white,
             'NodeJS'.green,
             'NodeJS with ExpressJS'.green,
             'None'.white

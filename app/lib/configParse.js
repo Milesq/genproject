@@ -10,11 +10,12 @@ class ConfigFile {
         this.content.config = {
             frontLanguage: tab[0],
             frontFreamwork: tab[1],
-            cssPreCompiler: tab[2],
-            toolBuilder: tab[3],
-            unitTests: tab[4],
-            backend: tab[5],
-            doxygen: tab[6]
+            htmlPreProcesor: tab[2],
+            cssPreCompiler: tab[3],
+            toolBuilder: tab[4],
+            unitTests: tab[5],
+            backend: tab[6],
+            doxygen: tab[7]
         };
         this.content = beautify(this.content, null, 2);
     }
