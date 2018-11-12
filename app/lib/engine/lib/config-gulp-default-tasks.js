@@ -15,7 +15,7 @@ function main (config) {
 
 gulp.task('src', () => {
 	gulp.src(source.src)
-		.pipe(gulp.dest(source.srcDist));
+	.pipe(gulp.dest(source.srcDist));
 });
 
 gulp.task('imageMin', () => {
@@ -47,7 +47,7 @@ gulp.task('minify', ['${html}', '${css}', '${js}', 'imageMin', 'src'], () => {
 gulp.task('${js}', () => {
 	gulp.src(source.js)${tsPipe}
 		.pipe(babel({
-			presets: ['es2015']
+			presets: ['@babel/env']
 		}))
 		.pipe(uglify())
 		.on('error', function (err) {

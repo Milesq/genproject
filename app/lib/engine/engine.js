@@ -10,9 +10,6 @@ function main(path) {
     let file = JSON.parse(fs.readFileSync(path)),
         pName = file.projectName; // project name
     
-    config.gulp(file);
-    return true;
-    
     fs.mkdirSync(pName);
     fs.mkdirSync(pName + '/app');
     fs.writeFileSync(pName + '/README.md', '# new project');

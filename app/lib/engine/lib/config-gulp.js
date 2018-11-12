@@ -7,8 +7,7 @@ function main (config) {
     gulpfile += require('./config-gulp-sources')(config.config) + '\n\n';
     gulpfile += require('./config-gulp-default-tasks')(config.config);
 
-    // fs.writeFileSync(`${pName}/gulpfile.js`, gulpfile);
-    fs.writeFileSync(`gulpfile.js`, gulpfile);
+    fs.writeFileSync(`${pName}/gulpfile.js`, gulpfile);
 }
 
 module.exports = main;
