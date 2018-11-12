@@ -9,12 +9,15 @@ const config = {
 function main(path) {
     let file = JSON.parse(fs.readFileSync(path)),
         pName = file.projectName; // project name
-
-    config.gulp(file);
-    process.exit();
-    fs.mkdirSync(pName);
-    fs.mkdirSync(pName+'/app');
     
+    config.gulp(file);
+    return true;
+    
+    fs.mkdirSync(pName);
+    fs.mkdirSync(pName + '/app');
+    fs.writeFileSync(pName + '/README.md', '# new project');
+    fs.writeFileSync(pName + '/.gitignore', 'node_modules/\ndist/');
+
     if(file.config.unitTests != 'None') {
         fs.mkdirSync(`${pName}/spec`);
         fs.writeFileSync(`${pName}/karma.conf.js`, config.karma);

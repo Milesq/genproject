@@ -11,7 +11,7 @@ class ConfigFile {
             frontLanguage: tab[0],
             frontFreamwork: tab[1],
             htmlPreProcesor: tab[2],
-            cssPreCompiler: tab[3],
+            cssPreProcesor: tab[3],
             unitTests: tab[4],
             backend: tab[5],
             doxygen: tab[6]
