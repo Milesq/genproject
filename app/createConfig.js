@@ -28,7 +28,7 @@ function main() {
             io.close();
             if(resp.search('Tak') != -1) {
                 parser.save();
-                engine.createProject(path.resolve('./genProject.conf.json'));
+                engine(path.resolve('./genProject.conf.json'));
             }
             else process.exit();
         });

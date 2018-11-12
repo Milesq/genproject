@@ -5,7 +5,7 @@ function main (config) {
         gulpfile = '';
     gulpfile += require('./config-gulp-headers')(config.config) + '\n\n';
     gulpfile += require('./config-gulp-sources')(config.config) + '\n\n';
-    // gulpfile += require('./config-gulp-default-task')(config.config) + '\n\n';
+    gulpfile += require('./config-gulp-default-tasks')(config.config);
 
     // fs.writeFileSync(`${pName}/gulpfile.js`, gulpfile);
     fs.writeFileSync(`gulpfile.js`, gulpfile);

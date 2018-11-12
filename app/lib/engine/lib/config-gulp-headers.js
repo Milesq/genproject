@@ -5,7 +5,7 @@ function main (config) {
 	html_min = require('gulp-htmlmin'),
 	imgMin = require('gulp-imagemin'),
 	minCss = require('gulp-clean-css'),
-	browser = require('browser-sync'),
+	browser = require('browser-sync'), // will be open only one server
 	babel = require('gulp-babel')`;
 	
 	if (config.frontLanguage == "TypeScript") {
