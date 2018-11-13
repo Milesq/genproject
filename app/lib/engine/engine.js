@@ -4,7 +4,8 @@ const config = {
     npm: require('./lib/config-npm'),
     karma: require('./lib/karma.conf.js'),
     gulp: require('./lib/config-gulp'),
-    backend: require('./lib/config-backend')
+    backend: require('./lib/config-backend'),
+    primaryFiles: require('./primaryFiles')
 };
 
 function moduleExist (name) {
@@ -14,9 +15,7 @@ function moduleExist (name) {
 function main(path) {
     let file = JSON.parse(fs.readFileSync(path)),
         pName = file.projectName; // project name
-        
-    config.npm(file);
-    return false;
+
     if(fs.existsSync(pName)) {
         console.error(`Directory already '${pName}/' exists!`);
         process.exit();
@@ -30,15 +29,8 @@ function main(path) {
     if(file.config.backend != 'None')
         fs.mkdirSync(`${pName}/api`);
 
-    if (file.config.frontLanguage == 'js')
-        fs.mkdirSync(`${pName}/app/js`);
-    else
-        fs.mkdirSync(`${pName}/app/ts`);
-
-    if (file.config.cssPreProcesor == 'css')
-        fs.mkdirSync(`${pName}/app/css`);
-    else
-        fs.mkdirSync(`${pName}/app/sass`);
+    fs.mkdirSync(`${pName}/app/js`);
+    fs.mkdirSync(`${pName}/app/css`);
 
     //#endregion
     if(file.config.unitTests != 'None') {
@@ -65,6 +57,7 @@ function main(path) {
     
     if (file.config.doxygen == "Tak")
         sys(`cd ${pName} & doxygen -g`);
+    config.primaryFiles(file, pName);
     config.npm(file);
     config.gulp(file);
     // config.backend(file);

@@ -1,8 +1,9 @@
 function main (config) {
-	let cssExt = {};
-	cssExt['sass(scss syntax)'] = 'scss';
-	cssExt['sass'] = 'sass';
-	cssExt['none'] = 'css';
+    let cssExt = {
+        'sass(scss syntax)': 'scss',
+        'sass': 'sass',
+        'none': 'css'
+    };
 
 	let langs = {
 		js: config.frontLanguage[0].toLowerCase() + 's',

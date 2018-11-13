@@ -1,7 +1,7 @@
 function main (config) {
 	let ts = config.frontLanguage == 'TypeScript',
 		jade = config.htmlPreProcesor == 'Jade',
-		sass = config.cssPreProcesor == 'Sass'
+		sass = config.cssPreProcesor == 'Sass',
 		scss = config.cssPreProcesor == 'Sass(Scss syntax)';
 	let ret = `${require('./config-gulp-static-tasks')}
 

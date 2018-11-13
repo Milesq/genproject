@@ -18,7 +18,10 @@ gulp.task('test', () => {
 });
 
 gulp.task('default', ['minify', 'serve'], () => {
-    gulp.watch('gulpfile.js', process.exit);
+    gulp.watch('gulpfile.js', () => {
+        console.log('Gulpfile changed!');
+        process.exit();
+    });
 });
 
 gulp.task('minify', ['html', 'css', 'js', 'images']);
