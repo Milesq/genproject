@@ -1,16 +1,18 @@
 function main (config) {
-	let ret = `var gulp = require('gulp'),
+	let ret = `const gulp = require('gulp'),
 	del = require('del'),
-	uglify = require('gulp-uglify'),
-	html_min = require('gulp-htmlmin'),
-	imgMin = require('gulp-imagemin'),
-	minCss = require('gulp-clean-css'),
-	browser = require('browser-sync'), // will be open only one server
-	babel = require('gulp-babel')`;
+	bs = require('browser-sync').create(),
+
+	cssmin = require('gulp-cssmin'),
+	babel = require('gulp-babel'),
+	jsmin = require('gulp-uglify'),
+	imgmin = require('gulp-imagemin'),
+	htmlmin = require('gulp-htmlmin')`;
 	
 	if (config.frontLanguage == "TypeScript") {
 		ret += ',\n';
-		ret += "	ts = require('gulp-typescript')";
+		ret += "	ts = require('gulp-typescript'),\n";
+		ret += "	smTS = require('gulp-sourcemaps')";
 	}
 
 	if (config.htmlPreProcesor == "Jade") {
@@ -24,7 +26,12 @@ function main (config) {
 		ret += "	sm = require('gulp-sourcemaps')";
 	}
 
-	return ret + ';';
+	ret += ';';
+	
+	if(config.cssPreProcesor != "None")
+		ret += `\n\nsass.compiler = require('node-sass');`;
+
+	return ret;
 }
 
 module.exports = main;

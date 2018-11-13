@@ -1,84 +1,46 @@
 function main (config) {
-	let html = config.htmlPreProcesor.toLowerCase(),
-		js = config.frontLanguage[0].toLowerCase() + 's',
-		css = (config.cssPreProcesor == "None")? 'css' : 'sass',
-		tsPipe = (js == 'ts')? '\n		.pipe(ts())' : '',
-		sassPipe = (css != 'None')? `
-	.pipe(sm.init())
-	.pipe(sass())` : '',
-		sassSM = (css != 'None')? '\n	.pipe(sm.write())' : '',
-		jadePipe = (html == 'jade')? '\n 	.pipe(pug())': '';
+	let ts = config.frontLanguage == 'TypeScript',
+		jade = config.htmlPreProcesor == 'Jade',
+		sass = config.cssPreProcesor == 'Sass'
+		scss = config.cssPreProcesor == 'Sass(Scss syntax)';
+	let ret = `${require('./config-gulp-static-tasks')}
 
-	let ret = `gulp.task('clean', () => {
-	del('dist/*');
+gulp.task('html', () => {
+	gulp.src(sources.html)${(jade)? `
+		.pipe(pug())
+		` : ''}
+		.pipe(htmlmin({ collapseWhitespace: true }))
+		.pipe(gulp.dest(sources.dist));
+	bs.reload();
 });
 
-gulp.task('src', () => {
-	gulp.src(source.src)
-	.pipe(gulp.dest(source.srcDist));
+gulp.task('css', () => {
+	gulp.src(sources.css.app)${(sass||scss)?`
+		.pipe(sm.init())
+        .pipe(sass().on('error', sass.logError))
+		` : ''}.pipe(cssmin())${(sass||scss)?`
+		.pipe(sm.write())` : ''}
+        .pipe(gulp.dest(sources.css.dist))
+        .pipe(bs.stream());
+
+    gulp.src(sources.css.lib).pipe(gulp.dest(sources.css.dist));
 });
 
-gulp.task('imageMin', () => {
-	gulp.src(source.img)
-		.pipe(imgMin())
-		.pipe(gulp.dest(source.imgDist));
-	browser.reload();
-});
+gulp.task('js', () => {
+    gulp.src(sources.js.app)${(ts)? `
+        .pipe(smTS.init())
+        .pipe(ts())`: ''} 
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(jsmin())${(ts)?`
+        .pipe(smTS.write())
+		` : ''}
+		.pipe(gulp.dest(sources.js.dist));
 
-gulp.task('default', ['${html}', '${css}', '${js}', 'imageMin', 'src'] , () => {
-	browser({
-	    server: 'dist/'
-	});
-
-	gulp.watch(source.${html}, ['${html}']);
-	gulp.watch(source.css, ['${css}']);
-	gulp.watch(source.js, ['${js}']);
-	gulp.watch(source.img, ['imageMin']);
-
-	gulp.watch('gulpfile.js', () => {
-	    process.exit();
-	});
-});
-
-gulp.task('minify', ['${html}', '${css}', '${js}', 'imageMin', 'src'], () => {
-	console.log('Tylko minifikacja.');
-});
-
-gulp.task('${js}', () => {
-	gulp.src(source.js)${tsPipe}
-		.pipe(babel({
-			presets: ['@babel/env']
-		}))
-		.pipe(uglify())
-		.on('error', function (err) {
-			console.log(err.cause);
-		})
-		.pipe(gulp.dest(source.jsDist));
-
-	gulp.src(source.jsLib)
-		.pipe(gulp.dest(source.jsDist));
-	browser.reload();
-});
-
-gulp.task('${css}', () => {
-	gulp.src(source.cssMain)${sassPipe}
-		.pipe(minCss())${sassSM}
-		.pipe(gulp.dest(source.cssDist))
-		.pipe(browser.stream());
-
-	gulp.src(source.cssLib)
-		.pipe(gulp.dest(source.cssDist));
-});
-
-gulp.task('${html}', () => {
-    gulp.src(source.${html})${jadePipe}
-		.pipe(html_min({
-			collapseWhitespace: true
-		}))
-		.pipe(gulp.dest(source.dist));
-	browser.reload();
+    gulp.src(sources.js.lib).pipe(gulp.dest(sources.js.dist));
+    bs.reload();
 });`;
-
 	return ret;
 }
 

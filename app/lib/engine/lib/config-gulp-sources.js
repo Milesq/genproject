@@ -1,40 +1,36 @@
 function main (config) {
-	let ret = `const source = {
-	dist: 'dist/', //katalog do którego trafia wersja skomilowana
-	jsDist: 'dist/js/', //katalog do którego trafia wersja skomilowana
-	jsLib: 'app/js/*.min.js', //libki js'a
-	img: 'app/img/*.*', //obrazki
-	imgDist: 'dist/img/', //katalog do którego trafia wersja skomilowana
-	src: 'app/src/**/*.*', //źródła do skopiowania
-	srcDist: 'dist/src/', //tutaj
-	cssLib: 'app/sass/*.css', //pliki css które nie muszą być kompilowane
-	cssDist: 'dist/css/', //katalog do którego trafia wersja skomilowana`;
+	let cssExt = {};
+	cssExt['sass(scss syntax)'] = 'scss';
+	cssExt['sass'] = 'sass';
+	cssExt['none'] = 'css';
 
-	ret += '\n';
-	if (config.frontLanguage == "TypeScript") {
-		ret += "	ts: 'app/js/*.ts', //pliki ts'a poza bibliotekami";
-	} else if (config.frontLanguage == "JavaScript") {
-		ret += "	js: 'app/js/*.js', //pliki js'a poza bibliotekami";
+	let langs = {
+		js: config.frontLanguage[0].toLowerCase() + 's',
+		css: cssExt[config.cssPreProcesor.toLowerCase()],
+		html: config.htmlPreProcesor.toLowerCase()
+	};
+
+	let ret = `const app = \`app\`;
+const dist = \`dist\`;
+var sources = {
+	app: app+'/',
+	dist: dist,
+	html: \`\${app}/*.${langs.html}\`,
+	css: {
+		app: \`\${app}/css/**/*.${langs.css}\`,
+		lib: \`\${app}/css/**/*.lib.css\`,
+		dist: \`\${dist}/css\`
+	},
+	js: {
+		app: \`\${app}/js/**/*.${langs.js}\`,
+		lib: \`\${app}/js/**/*.lib.js\`,
+		dist: \`\${dist}/js\`
+	},
+	src: {
+		app: \`\${app}/src/*.*\`,
+		dist: \`\${dist}/src\`
 	}
-
-	ret += '\n';
-	if (config.htmlPreProcesor == "Jade") {
-		ret += "	jade: 'app/*.jade', //katalog projektu gdzie trzymane są pliki JADE";
-	} else if (config.htmlPreProcesor == "HTML") {
-		ret += "	html: 'app/*.html', //katalog projektu gdzie trzymane są pliki HTML";
-	}
-
-	ret += '\n';
-	if (config.cssPreProcesor == "None") {
-		ret += "	css: 'app/css/*.css', // pliki css'a";
-	} else if (config.cssPreProcesor == "Sass") {
-		ret += "	css: 'app/sass/*.sass', // pliki sass'a\n";
-		ret += "	cssMain: 'app/sass/style.sass', //główny plik sass'a";
-	} else if (config.cssPreProcesor == "Sass(Scss syntax)") {
-		ret += "	css: 'app/sass/*.scss', // pliki sass'a\n";
-		ret += "	cssMain: 'app/sass/style.scss', //główny plik sass'a";
-	}
-
-	return ret + '\n};';
+};`;
+	return ret;
 }
 module.exports = main;
