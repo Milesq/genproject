@@ -3,6 +3,8 @@ function main (config) {
 	del = require('del'),
 	bs = require('browser-sync').create(),
 
+	
+	autoprefixer = require('gulp-autoprefixer'),
 	cssmin = require('gulp-cssmin'),
 	babel = require('gulp-babel'),
 	jsmin = require('gulp-uglify'),

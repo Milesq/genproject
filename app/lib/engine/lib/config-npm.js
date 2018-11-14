@@ -22,7 +22,8 @@ let package = {
         "gulp-cssmin": "^0.2.0",
         "gulp-htmlmin": "^5.0.1",
         "gulp-imagemin": "^5.0.3",
-        "gulp-uglify": "^3.0.1"
+        "gulp-uglify": "^3.0.1",
+        "gulp-autoprefixer": "^6.0.0"
     }
 };
 

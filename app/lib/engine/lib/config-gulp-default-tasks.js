@@ -18,7 +18,10 @@ gulp.task('css', () => {
 	gulp.src(sources.css.app)${(sass||scss)?`
 		.pipe(sm.init())
         .pipe(sass().on('error', sass.logError))
-		` : ''}.pipe(cssmin())${(sass||scss)?`
+		` : ''}.pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        })).pipe(cssmin())${(sass||scss)?`
 		.pipe(sm.write())` : ''}
         .pipe(gulp.dest(sources.css.dist))
         .pipe(bs.stream());
