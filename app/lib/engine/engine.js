@@ -26,8 +26,14 @@ function main(path) {
     fs.writeFileSync(pName + '/README.md', '# new project');
     fs.writeFileSync(pName + '/.gitignore', 'node_modules/\ndist/');
 
-    if(file.config.backend != 'None')
+    if(file.config.backend != 'None' && file.config.whyBackend == 'Jako API')
         fs.mkdirSync(`${pName}/api`);
+
+    if(file.config.backend != 'None' && file.config.whyBackend == 'Do renderowania szablonów HTML') {
+        fs.mkdirSync(`${pName}/backend`);
+        fs.writeFileSync(`${pName}/backend/readme.txt`,
+         'Po front endzie przełożyć zawartość dist do renderowania szablonów');
+    }
 
     fs.mkdirSync(`${pName}/app/js`);
     fs.mkdirSync(`${pName}/app/css`);

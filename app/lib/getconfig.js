@@ -1,8 +1,7 @@
 const Select = require('./select');
 require('colors');
 
-let cnfTemplate = [
-    {
+let cnfTemplate = [{
         description: 'Wybierz język do frontendu',
         values: ['JavaScript'.blue, 'TypeScript'.blue]
     },
@@ -25,11 +24,18 @@ let cnfTemplate = [
     {
         description: 'Czego będziesz używał do backendu?',
         values: ['PHP'.magenta,
-            'PHP with symfony'.black,
+            'PHP with symfony'.white,
             'PHP with my own Freamwork'.white,
             'NodeJS'.green,
             'NodeJS with ExpressJS'.green,
             'None'.white
+        ]
+    },
+    {
+        description: 'Jak będziesz używał backendu?',
+        values: ['Do renderowania szablonów HTML'.magenta,
+            'Jako API'.white,
+            'Staromodnie, do całej witryny'.red
         ]
     },
     {
@@ -46,7 +52,9 @@ function getConfig(io) {
         new Select(current.description, current.values, io).then(resp => {
             answers.push(resp);
             if (cnfTemplate.length > 0) {
-                getConfig(io).then(resp => {resolve(resp)})
+                getConfig(io).then(resp => {
+                    resolve(resp)
+                })
             } else {
                 resolve(answers);
             }

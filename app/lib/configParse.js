@@ -14,7 +14,8 @@ class ConfigFile {
             cssPreProcesor: tab[3],
             unitTests: tab[4],
             backend: tab[5],
-            doxygen: tab[6]
+            whyBackend: tab[6],
+            doxygen: tab[7]
         };
         this.content = beautify(this.content, null, 2);
     }
