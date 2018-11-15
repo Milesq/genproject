@@ -1,6 +1,6 @@
 {
   "name": "genproject",
-  "version": "0.0.1",
+  "version": "0.7.0",
   "description": "Project generetor, general purpose",
   "main": "app/main.js",
   "scripts": {
@@ -9,8 +9,12 @@
   },
   "author": "Milesq",
   "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "gen-project": "./app/main.js",
+    "genproject": "./app/main.js"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1",
     "nodemon": "^1.18.6"
   },
   "dependencies": {

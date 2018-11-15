@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const engine = require('./lib/engine/engine');
 const path = require('path');
 
