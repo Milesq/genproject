@@ -2,7 +2,7 @@ function main ({config}, pName) {
     let possibility = [
         ['PHP', 'php'],
         ['PHP with symfony', 'symfony'],
-        ['PHP with my own Freamwork', 'mf'],
+        ['PHP with the simplest MVC skeleton', 'mf'],
         ['NodeJS', 'nodejs'],
         ['NodeJS with ExpressJS', 'expressjs']
     ];

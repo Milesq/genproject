@@ -25,7 +25,7 @@ let cnfTemplate = [{
         description: 'Czego będziesz używał do backendu?',
         values: ['PHP'.magenta,
             'PHP with symfony'.white,
-            'PHP with my own Freamwork'.white,
+            'PHP with the simplest MVC skeleton'.white,
             'NodeJS'.green,
             'NodeJS with ExpressJS'.green,
             'None'.white

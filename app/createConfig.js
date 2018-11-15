@@ -9,11 +9,12 @@ function main() {
     let Select = require('./lib/select');
 
     require('colors');
-    let parser = new ConfigParser();
+    let parser = new ConfigParser;
 
     parser.content.name = input.question("Imie: ");
     parser.content.description = input.question("Opis projektu: ");
-    parser.content.projectName = input.question("Nazwa projektu: ");
+    let projectName = input.question("Nazwa projektu: ");
+    parser.content.projectName = projectName;
 
     let io = readline.createInterface(process.stdin, process.stdout);
 
@@ -28,7 +29,7 @@ function main() {
             io.close();
             if(resp.search('Tak') != -1) {
                 parser.save();
-                engine(path.resolve('./genProject.conf.json'));
+                engine(path.resolve(`./genProject-${projectName}.conf.json`));
             }
             else process.exit();
         });

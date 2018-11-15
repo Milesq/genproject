@@ -1,8 +1,7 @@
 let beautify = require('json-beautify');
 
 class ConfigFile {
-    constructor(_name = "./genProject.conf.json") {
-        this.name = _name;
+    constructor() {
         this.content = {};
     }
 
@@ -17,6 +16,7 @@ class ConfigFile {
             whyBackend: tab[6],
             doxygen: tab[7]
         };
+        this.name = `./genProject-${this.content.projectName}.conf.json`;
         this.content = beautify(this.content, null, 2);
     }
 
