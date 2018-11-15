@@ -1,5 +1,8 @@
-const fs = require('fs');
-const sys = require('node-cmd').run;
+const fs = require('fs'),
+      Select = require('./../select'),
+      del = require('del'),
+      sys = require('node-cmd').run;
+
 const config = {
     npm: require('./lib/config-npm'),
     karma: require('./lib/karma.conf.js'),
@@ -12,22 +15,16 @@ function moduleExist (name) {
     return fs.existsSync(`${require('global-modules')}/${name}`);
 }
 
-function main(path) {
+function engine(path) {
     let file = JSON.parse(fs.readFileSync(path)),
         pName = file.projectName; // project name
 
-    if(fs.existsSync(pName)) {
-        console.error(`Directory already '${pName}/' exists!`);
-        process.exit();
-    }
     //#region making directories
     fs.mkdirSync(pName);
     fs.mkdirSync(pName + '/app');
     fs.writeFileSync(pName + '/README.md', '# new project');
     fs.writeFileSync(pName + '/.gitignore', 'node_modules/\ndist/');
-
-    if(file.config.backend != 'None' && file.config.whyBackend == 'Jako API')
-        fs.mkdirSync(`${pName}/api`);
+    sys(`cd ${pName} && git init`);
 
     if(file.config.backend != 'None' && file.config.whyBackend == 'Do renderowania szablonów HTML') {
         fs.mkdirSync(`${pName}/backend`);
@@ -66,7 +63,34 @@ function main(path) {
     config.primaryFiles(file, pName);
     config.npm(file);
     config.gulp(file);
-    // config.backend(file);
+    if(file.config.backend != 'None')
+        config.backend(file, pName);
+}
+
+function main(path) {
+    let file = JSON.parse(fs.readFileSync(path)),
+        pName = file.projectName,
+        readline = require('readline'),
+        rli = readline.createInterface(process.stdin, process.stdout);
+
+
+    if (fs.existsSync(pName)) {
+        new Select("Directory already exists!\nDelete `" + pName + "` directory?",
+        ['Yes', 'No'],
+        rli,
+        1).then(resp => {
+            rli.close();
+            if(resp == "No") process.exit();
+            else {
+                del(pName+'/').then(() => {
+                    engine(path);
+                });
+            }
+        });
+    } else {
+        rli.close();
+        engine(path);
+    }
 }
 
 module.exports = main;

@@ -14,7 +14,7 @@
 
 - Compilers
 
-  - Gulp
+  - Gulp (*default*)
 
   - Karma+Jasmine
 
