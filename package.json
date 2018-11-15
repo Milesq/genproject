@@ -12,6 +12,7 @@
   "preferGlobal": true,
   "bin": {
     "gen-project": "./app/main.js",
+    "gen": "./app/main.js",
     "genproject": "./app/main.js"
   },
   "devDependencies": {

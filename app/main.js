@@ -12,3 +12,6 @@ if (process.argv.length > 2) {
 } else {
     require('./createConfig')();
 }
+
+//TODO: this.project.changeLanguage('en').then(npm.publish);
+//TODO: implements gen --version

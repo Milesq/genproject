@@ -2,6 +2,29 @@
 
 ## Node JS CLI application, used to generate generic project templates
 
+## Install
+
+```js
+npm i -g genproject
+```
+
+### CLI usage
+
+```js
+genproject
+// or
+genproject config-file
+// you can use gen-project notation, for example
+genproject config-file
+// or gen
+gen config-file
+```
+
+usage command without args, ask you for using technologies create file *genProject-{project_name}.conf.json*
+and create your template
+
+commands with args (name of file) only create template of project
+
 ### Supported technology
 
 - Frontend
@@ -12,7 +35,7 @@
 
   - Sass&Scss
 
-- Compilers
+- Helpers
 
   - Gulp (*default*)
 
@@ -22,11 +45,12 @@
 
   - nodeJS
     - Express.JS
+  - Python (Django) will be implemented in next versions
   - PHP
 
     - Symfony
 
-    - My PHP Freamwork
+    - Simple MVC template
 
 - Other
 
