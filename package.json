@@ -1,11 +1,10 @@
 {
   "name": "genproject",
-  "version": "0.7.0",
+  "version": "0.9.9",
   "description": "Project generetor, general purpose",
   "main": "app/main.js",
   "scripts": {
-    "test": "karma start",
-    "start": "node app/main.js"
+    "start": "node ./"
   },
   "author": "Milesq",
   "license": "ISC",
@@ -13,9 +12,6 @@
   "bin": {
     "gen": "./app/main.js",
     "genproject": "./app/main.js"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.6"
   },
   "dependencies": {
     "colors": "^1.3.2",
