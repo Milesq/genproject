@@ -2,27 +2,27 @@ const Select = require('./select');
 require('colors');
 
 let cnfTemplate = [{
-        description: 'Wybierz język do frontendu',
+        description: 'Choose frontend language',
         values: ['JavaScript'.blue, 'TypeScript'.blue]
     },
     {
-        description: 'Wybierz frontendowy freamwork',
+        description: 'Choose frontend freamwork',
         values: ['Vue'.green, 'None'.white]
     },
     {
-        description: 'Wybierz typ dokumentu strony',
+        description: 'Choose type of documents',
         values: ['HTML'.red, 'Jade'.white]
     },
     {
-        description: 'Wybierz kompilator CSS\'a',
+        description: 'Choose preprocesor CSS\'a',
         values: ['Sass'.red, 'Sass(Scss syntax)'.red, 'None'.white]
     },
     {
-        description: 'W czym chcesz pisać testy jednostkowe?',
+        description: 'Where do you want to write unit tests?',
         values: ['Karma+Jasmine'.red, 'None'.white]
     },
     {
-        description: 'Czego będziesz używał do backendu?',
+        description: 'What will you use to write backend?',
         values: ['PHP'.magenta,
             'PHP with symfony'.white,
             'PHP with the simplest MVC skeleton'.white,
@@ -32,15 +32,15 @@ let cnfTemplate = [{
         ]
     },
     {
-        description: 'Jak będziesz używał backendu?',
-        values: ['Do renderowania szablonów HTML'.magenta,
-            'Jako API'.white,
-            'Staromodnie, do całej witryny'.red
+        description: 'Why you will be using backend?',
+        values: ['To render HTML templates'.magenta,
+            'As API'.white,
+            'Inline scripts'.red
         ]
     },
     {
-        description: 'Chcesz używać Doxygen\'a?',
-        values: ["Tak".blue, "Nie".white]
+        description: 'Will you use it? Doxygen\'a?',
+        values: ["Yes".blue, "No".white]
     }
 ];
 

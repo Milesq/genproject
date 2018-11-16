@@ -56,3 +56,7 @@ commands with args (name of file) only create template of project
 
   - GIT (*default*)
   - Doxygen
+
+### Bugs
+
+Please resport every bugs (also with english grammar ;) ) as pull request: [Project's github](https://github.com/Milesq/genproject)

@@ -26,10 +26,10 @@ function engine(path) {
     fs.writeFileSync(pName + '/.gitignore', 'node_modules/\ndist/');
     sys(`cd ${pName} && git init`);
 
-    if(file.config.backend != 'None' && file.config.whyBackend == 'Do renderowania szablonów HTML') {
+    if(file.config.backend != 'None' && file.config.whyBackend == 'To render HTML templates') {
         fs.mkdirSync(`${pName}/backend`);
         fs.writeFileSync(`${pName}/backend/readme.txt`,
-         'Po front endzie przełożyć zawartość dist do renderowania szablonów');
+         'Copy content of dist/ to this directory');
     }
 
     fs.mkdirSync(`${pName}/app/js`);
@@ -58,7 +58,7 @@ function engine(path) {
         }
     }
     
-    if (file.config.doxygen == "Tak")
+    if (file.config.doxygen == "Yes")
         sys(`cd ${pName} & doxygen -g`);
     config.primaryFiles(file, pName);
     config.npm(file);
